@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rest WebService GET All</title>
+
+    <script>
+
+        // Option 1 - with "Then"
+        function getAll_Option1() {
+            fetch("https://jsonplaceholder.typicode.com/users").then(resp => {
+                if (resp.ok == true) {
+                    resp.json().then(data => console.table(data))
+                } else {
+                    console.log("Error getting data");
+                }
+            });
+        }
+
+        // Option 2 - with "Async await"
+        async function getAll_Option2() {
+            let resp = await fetch("https://jsonplaceholder.typicode.com/users");
+            if (resp.ok == true) {
+                let data = await resp.json();
+                console.table(data);
+            } else {
+                console.log("Error getting data");
+            }
+        }
+
+    </script>
+</head>
+
+<body>
+
+    <input type="button" value="Get All Data" onclick="getAll_Option1()" />
+</body>
+
+</html>
